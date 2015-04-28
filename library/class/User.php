@@ -82,5 +82,15 @@ class User {
     public function getType(){
         return $this->type;
     }
+    
+    public static function getAllUsers(){
+        $handler = Connection::getInstance()->getConnection();
+        $query   = $handler->prepare('SELECT * FROM `user`');
+        $query->execute();
+        $allUsers = array();
+        while($currUser = $query->fetch(PDO::FETCH_ASSOC))
+            $allUsers[] = $currUser;
+        return $allUsers;
+    }
      
 }
