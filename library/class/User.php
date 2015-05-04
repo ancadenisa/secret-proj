@@ -7,6 +7,10 @@
  * and open the template in the editor.
  */
  include_once 'Connection.php';
+ include_once 'Admin.php';
+ include_once 'Secrt.php';
+ include_once 'Superuser.php';
+ 
  //include_once 'config.php';
 
 /**
@@ -91,6 +95,71 @@ class User {
         while($currUser = $query->fetch(PDO::FETCH_ASSOC))
             $allUsers[] = $currUser;
         return $allUsers;
+    }
+    
+     public static function deleteUserTypeById($id_){
+        $handler = Connection::getInstance()->getConnection();
+        $sql     = 'SELECT * FROM `user` WHERE `id` = :id_';
+        $query   = $handler->prepare($sql);
+        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->execute();
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        echo $user['id'];   
+        if($user['is_suser'] != NULL){
+            Superuser::deleteUserById($id_);
+        }
+        else if($user['is_admin'] != NULL){
+            Admin::deleteUserById($id_);
+        }
+        else if($user['is_secrt'] != NULL){
+            Secrt::deleteUserById($id_);
+        }
+        
+    }
+    
+    public static function deleteUserById($id_){
+        $handler = Connection::getInstance()->getConnection();
+        $sql     = 'DELETE FROM `user` WHERE `id` = :id_';
+        $query   = $handler->prepare($sql);
+        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->execute();
+        //TO DO return - in Superuser, Admin, Secrt
+    }
+    
+    public static function insertUser($username_, $mail_, $password_, $user_type_, $name_, $birthdate_, $hiredate_){
+        $handler = Connection::getInstance()->getConnection();
+        if($user_type_ == 'superuser'){
+            $query   = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, 1, NULL, NULL)');
+            $query2   = $handler->prepare('INSERT INTO `super_user` VALUES (NULL, :user_id, :name, :birth_date, :hire_date, 1, :created_at, :updated_at)');
+        }else if($user_type_ == 'admin'){
+            $query   = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, NULL, 1, NULL)');
+            $query2   = $handler->prepare('INSERT INTO `admin` VALUES (NULL, :user_id, :name, :birth_date, :hire_date, 1, :created_at, :updated_at)');
+        }else{
+            $query   = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, NULL, NULL, 1)');
+            $query2   = $handler->prepare('INSERT INTO `secretar` VALUES (NULL, :user_id, :name, :birth_date, :hire_date, 1, :created_at, :updated_at)');
+        }
+        $query->bindParam(':username', $username_, PDO::PARAM_STR);
+        $query->bindParam(':email', $mail_, PDO::PARAM_STR);
+        $query->bindParam(':password', $password_, PDO::PARAM_STR);
+        $query->execute();
+    
+        $handler = Connection::getInstance()->getConnection();
+        $query   = $handler->prepare('SELECT `id` FROM `user` WHERE `username` = :username');
+        $query->bindParam(':username', $username_, PDO::PARAM_STR);
+        $query->execute();    
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+    
+        $created_at = date('Y-m-d H:m:s');
+        $updated_at = date('Y-m-d H:m:s');
+        $user_id = $result['id'];
+        $handler = Connection::getInstance()->getConnection();
+        $query2->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $query2->bindParam(':name', $name_, PDO::PARAM_STR);
+        $query2->bindParam(':birth_date', $birthdate_, PDO::PARAM_STR);
+        $query2->bindParam(':hire_date', $hiredate_, PDO::PARAM_STR);
+        $query2->bindParam(':created_at', $created_at, PDO::PARAM_STR);
+        $query2->bindParam(':updated_at', $updated_at, PDO::PARAM_STR);
+        $query2->execute();          
     }
      
 }

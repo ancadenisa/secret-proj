@@ -28,6 +28,7 @@ if (isset($_GET['logout'])) {
         <script src="../../script/bootstrap/bootstrap.js"></script>
         <h1>Hello SUPERUSER!</h1>
         <a href="./superuser.php?logout" class="btn btn-danger">Logout</a>
+        <a href="../forms/user-action-form.php?action=add" class="btn btn-info">Adauga</a>
         <?php      
         $users = User::getAllUsers();
         foreach ($users as $user) {
@@ -35,15 +36,15 @@ if (isset($_GET['logout'])) {
         <table width="500" border="1">
         <tr>
             <td><?php print $user['username']; ?></td>
-            <td><a href ="../forms/user-action-form.php?action=view" class="btn btn-link">Vizualizare</a></td>
-            <td><a href ="../forms/user-action-form.php?action=edit" class="btn btn-link">Editare</a></td>
-            <td><a href ="../forms/user-action-form.php?action=delete" class="btn btn-link">Stergere</a></td>
-            <td><a href ="../alter-rights-page.php?user=<?php $user['username'] ?>" class="btn btn-warning">Alterare drepturi</a></td>
+            <td><a href ="../forms/user-action-form.php?action=view&id=<?php echo $user['id']?>" class="btn btn-link">Vizualizare</a></td>
+            <td><a href ="../forms/user-action-form.php?action=edit&id=<?php echo $user['id']?>" class="btn btn-link">Editare</a></td>
+            <td><a href ="../forms/user-action-form.php?action=delete&id=<?php echo $user['id']?>" class="btn btn-link">Stergere</a></td>
+            <td><a href ="../alter-rights-page.php?id=<?php echo $user['id']?>" class="btn btn-warning">Alterare drepturi</a></td>
         </tr>
         </table>
         
         <?php
-        }    
+        }
         ?>
 </body>
 </html>

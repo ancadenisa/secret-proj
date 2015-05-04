@@ -3,6 +3,9 @@
 <?php 
  
     include_once '/../library/class/User.php';
+    include_once '/../library/class/Superuser.php';
+    include_once '/../library/class/Admin.php';
+    include_once '/../library/class/Secrt.php';
     
     if(isset($_POST['login'])){
         
@@ -10,6 +13,7 @@
         $password = $_POST['password'];
         
         $user = new User($username, $password);
+        
         
         if($user->loginUser() != NULL){;     
             $type = $user->getType();
@@ -20,6 +24,7 @@
             $_SESSION['user']['type'] = $type;
             
             if($type == 'IS_SUPERUSER'){
+                $suser = new Superuser($user);
                 header('location: superuser/superuser.php');
                 exit;
             }
