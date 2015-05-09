@@ -10,6 +10,7 @@
  include_once 'Admin.php';
  include_once 'Secrt.php';
  include_once 'Superuser.php';
+ include_once 'RightsConst.php';
  
  //include_once 'config.php';
 
@@ -167,16 +168,18 @@ class User {
         else if($column == "hire_date" || $column == "birth_date" || $column == "name"){
             if($user['is_suser'] != NULL){
                 $table = "super_user";
+                $sql2     = 'SELECT * FROM `super_user` WHERE `fk_user_id` = :id_';
             }else  if($user['is_admin'] != NULL){
                 $table = "admin";
+                $sql2     = 'SELECT * FROM `admin` WHERE `fk_user_id` = :id_';
             }else  if($user['is_secrt'] != NULL){
                 $table =  "secretar";
+                $sql2     = 'SELECT * FROM `secretar` WHERE `fk_user_id` = :id_';
             }
             
-            $sql2     = 'SELECT * FROM `secretar` WHERE `fk_user_id` = :id_';
+            
             $query2   = $handler->prepare($sql2);
             $query2->bindParam(':id_', $id_, PDO::PARAM_STR);
-            //$query2->bindParam(':mytable_', $table, PDO::PARAM_STR);
             $query2->execute();
             $user = $query2->fetch(PDO::FETCH_ASSOC);
             
@@ -224,6 +227,64 @@ class User {
         $query2->bindParam(':created_at', $created_at, PDO::PARAM_STR);
         $query2->bindParam(':updated_at', $updated_at, PDO::PARAM_STR);
         $query2->execute();          
+    }
+    
+    public static function getUserRights($id_){
+        $permissions  =  array();
+        $handler = Connection::getInstance()->getConnection();
+        $sql     = 'SELECT * FROM `user` WHERE `id` = :id_';
+        $query   = $handler->prepare($sql);
+        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->execute();
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        if($user['is_suser'] != NULL){
+                $table = "super_user";
+                $sql2     = 'SELECT * FROM `super_user` WHERE `fk_user_id` = :id_';
+            }else  if($user['is_admin'] != NULL){
+                $table = "admin";
+                $sql2     = 'SELECT * FROM `admin` WHERE `fk_user_id` = :id_';
+            }else  if($user['is_secrt'] != NULL){
+                $table =  "secretar";
+                $sql2     = 'SELECT * FROM `secretar` WHERE `fk_user_id` = :id_';
+            }
+            
+            
+        $query2   = $handler->prepare($sql2);
+        $query2->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query2->execute();
+        $user = $query2->fetch(PDO::FETCH_ASSOC);
+        
+        $sql     = 'SELECT * FROM `permission` WHERE `id` = :id_';
+        $query   = $handler->prepare($sql);
+        $query->bindParam(':id_', $user['fk_permission'], PDO::PARAM_STR);
+        $query->execute();
+        $permission = $query->fetch(PDO::FETCH_ASSOC);
+        
+        if($permission['add_aviz'] == 1){
+            $permissions[] = RightsConst::add_aviz;
+        }
+        if($permission['del_aviz'] == 1){
+            $permissions[] = RightsConst::del_aviz;
+        }
+        if($permission['add_categ_aviz'] == 1){
+            $permissions[] = RightsConst::add_categ_aviz;
+        }
+        if($permission['del_categ_aviz'] == 1){
+            $permissions[] = RightsConst::del_categ_aviz;
+        }
+        if($permission['modify_theme'] == 1){
+            $permissions[] = RightsConst::modify_theme;
+        }
+        if($permission['users_alter'] == 1){
+            $permissions[] = RightsConst::users_alter;
+        }
+        if($permission['forum_answer'] == 1){
+            $permissions[] = RightsConst::forum_answer;
+        }
+        if($permission['edit_aviz'] == 1){
+            $permissions[] = RightsConst::edit_aviz;
+        }
+        return $permissions;
     }
      
 }
