@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <?php 
  
     include_once '/../library/class/User.php';
@@ -42,29 +41,71 @@
             
  ?>
 
-
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="../style/bootstrap/bootstrap.css"">
-        <link rel="stylesheet" type="text/css" href="../style/bootstrap/bootstrap-theme.css">
-    </head>
-    <body>
-        <script src="../script/jquery/jquery.js"></script>
-        <script src="../script/bootstrap/bootstrap.js"></script>
-        <div class="container-fluid">
-            <form method="post" action="login.php">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+<head>
+    <title>Light Blue - Admin Template</title>
+    <link href="../css/application.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <script src="../lib/jquery/jquery-2.0.3.min.js"> </script>
+    <script src="../lib/jquery-pjax/jquery.pjax.js"></script>
+    <script src="../lib/backbone/underscore-min.js"></script>
+    <script src="../js/settings.js"> </script>
+</head>
+<body>
+<div class="single-widget-container">
+    <section class="widget login-widget">
+        <header class="text-align-center">
+            <h4>Login to your account</h4>
+        </header>
+        <div class="body">
+            <form class="no-margin"
+                  action="login.php" method="post" >
+                <fieldset>
+                    <div class="form-group no-margin">
+                        <label for="email" >Username</label>
+
+                        <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <i class="eicon-user"></i>
+                                </span>
+                            <input id="username" type="text" class="form-control input-lg" name="username"
+                                   >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" >Password</label>
+
+                        <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            <input id="password" type="password" class="form-control input-lg"  name="password"
+                                   >
+                        </div>
+
+                    </div>
+                </fieldset>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-block btn-lg btn-danger" name="login">
+                        <span class="small-circle"><i class="fa fa-caret-right"></i></span>
+                        <small>Sign In</small>
+                    </button>
+                    <div class="forgot"><a class="forgot" href="#">Forgot Username or Password?</a></div>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                </div>
-                <button type="submit" name="login" class="btn btn-default">Submit</button>
             </form>
         </div>
-    </body>
+        <footer>
+            <div class="facebook-login">
+                <a href="index.html"><span><i class="fa fa-facebook-square fa-lg"></i> LogIn with Facebook</span></a>
+            </div>
+        </footer>
+    </section>
+</div>
+</body>
 </html>
