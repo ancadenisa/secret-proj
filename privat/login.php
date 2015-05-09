@@ -5,6 +5,9 @@
     include_once '/../library/class/Superuser.php';
     include_once '/../library/class/Admin.php';
     include_once '/../library/class/Secrt.php';
+    include_once '/../library/class/Theme.php';
+    
+    $themeType = Theme::getCurrentTheme();
     
     if(isset($_POST['login'])){
         
@@ -21,6 +24,7 @@
             $_SESSION['user']['username'] = $user->getUsername();
             $_SESSION['user']['password'] = $user->getPassword();
             $_SESSION['user']['type'] = $type;
+            $_SESSION['themeType'] =  $themeType;
             
             if($type == 'IS_SUPERUSER'){
                 $suser = new Superuser($user);
@@ -44,7 +48,13 @@
 <html>
 <head>
     <title>Light Blue - Admin Template</title>
+    <?php 
+        if($themeType == 1){
+    ?>
     <link href="../css/application.min.css" rel="stylesheet">
+    <?php } else  if($themeType == 2){ ?>
+    <link href="../white/css/application.min.css" rel="stylesheet">
+    <?php } ?>
     <link rel="shortcut icon" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
