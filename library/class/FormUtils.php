@@ -25,4 +25,18 @@ class FormUtils {
         }
         return "hidden";
     }
+    
+    public static function isActionViewOrDel_readonly($action_) {
+        if($action_ == 'view' || $action_ == "delete"){
+            return "readonly";
+        }
+        return " ";        
+    }
+    
+    public static function isActionViewDelOrEdit_readonly($action_) {
+        if($action_ == 'edit' || $action_ == 'view' || $action_ == "delete"){
+            return "disabled";
+        }
+        return " ";        
+    }
 }
