@@ -24,6 +24,15 @@ class User {
     protected $password;
     protected $type;
     
+    public static function debug_to_console($data) {
+    if(is_array($data) || is_object($data))
+	{
+		echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
+	} else {
+		echo("<script>console.log('PHP: ".$data."');</script>");
+	}
+    }
+    
     /**
      * 
      */
@@ -117,6 +126,8 @@ class User {
         
     }
     
+    
+    
     public static function deleteUserById($id_){
         $handler = Connection::getInstance()->getConnection();
         $sql     = 'DELETE FROM `user` WHERE `id` = :id_';
@@ -124,6 +135,59 @@ class User {
         $query->bindParam(':id_', $id_, PDO::PARAM_STR);
         $query->execute();
         //TO DO return - in Superuser, Admin, Secrt
+    }
+    
+     public static function getInfo($id_, $column){
+        $handler = Connection::getInstance()->getConnection();
+        $sql     = 'SELECT * FROM `user` WHERE `id` = :id_';
+        $query   = $handler->prepare($sql);
+        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->execute();
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        //get other info too
+        //User::debug_to_console($query);
+            if($column == "superuser"){
+                if($user['is_suser'] == 1)
+                    return "selected";
+                else
+                    return "";
+            }else  if($column == "admin"){
+                if($user['is_admin'] == 1)
+                    return "selected";
+                else
+                    return "";
+            }else  if($column == "secrt"){
+                if($user['is_secrt'] == 1)
+                    return "selected";
+                else
+                    return "";
+            }
+   
+        
+        else if($column == "hire_date" || $column == "birth_date" || $column == "name"){
+            if($user['is_suser'] != NULL){
+                $table = "super_user";
+            }else  if($user['is_admin'] != NULL){
+                $table = "admin";
+            }else  if($user['is_secrt'] != NULL){
+                $table =  "secretar";
+            }
+            
+            $sql2     = 'SELECT * FROM `secretar` WHERE `fk_user_id` = :id_';
+            $query2   = $handler->prepare($sql2);
+            $query2->bindParam(':id_', $id_, PDO::PARAM_STR);
+            //$query2->bindParam(':mytable_', $table, PDO::PARAM_STR);
+            $query2->execute();
+            $user = $query2->fetch(PDO::FETCH_ASSOC);
+            
+            
+        }
+        
+        return $user[$column];
+    }
+    public static function editUser($id_, $username, $mail, $password, $user_type, $name, $birthdate, $hiredate){
+        //nu se poate schimba tipul unui utilizator -- TO DO
+        
     }
     
     public static function insertUser($username_, $mail_, $password_, $user_type_, $name_, $birthdate_, $hiredate_){
