@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <?php
-    
-    include_once '../../library/config.php';
+include_once '../../library/class/User.php';
 
-    if(isset($_GET['logout'])){
-        if(isset($_SESSION['user']['is_logged'])){
-            unset($_SESSION['user']['is_logged']);
-            unset($_SESSION['user']['username']);
-            unset($_SESSION['user']['password']);
-            unset($_SESSION['user']['type']);
-            header("location: ../login.php");
-            exit;
-        }
-        else {
-            header("location: ../login.php");
-            exit;
-        }
+if (isset($_GET['logout'])) {
+    if (isset($_SESSION['user']['is_logged'])) {
+        unset($_SESSION['user']['is_logged']);
+        unset($_SESSION['user']['username']);
+        unset($_SESSION['user']['password']);
+        unset($_SESSION['user']['type']);
+        header("location: ../login.php");
+        exit;
+    } else {
+        header("location: ../login.php");
+        exit;
     }
+}
 ?>
 <html>
     <head>
@@ -29,6 +27,24 @@
         <script src="../../script/jquery/jquery.js"></script>
         <script src="../../script/bootstrap/bootstrap.js"></script>
         <h1>Hello SUPERUSER!</h1>
-        <a href="./superuser.php?logout" class="btn btn-danger">Logout</a> 
-    </body>
+        <a href="./superuser.php?logout" class="btn btn-danger">Logout</a>
+        <a href="../forms/user-action-form.php?action=add" class="btn btn-info">Adauga</a>
+        <?php      
+        $users = User::getAllUsers();
+        foreach ($users as $user) {
+        ?>
+        <table width="500" border="1">
+        <tr>
+            <td><?php print $user['username']; ?></td>
+            <td><a href ="../forms/user-action-form.php?action=view&id=<?php echo $user['id']?>" class="btn btn-link">Vizualizare</a></td>
+            <td><a href ="../forms/user-action-form.php?action=edit&id=<?php echo $user['id']?>" class="btn btn-link">Editare</a></td>
+            <td><a href ="../forms/user-action-form.php?action=delete&id=<?php echo $user['id']?>" class="btn btn-link">Stergere</a></td>
+            <td><a href ="../alter-rights-page.php?id=<?php echo $user['id']?>" class="btn btn-warning">Alterare drepturi</a></td>
+        </tr>
+        </table>
+        
+        <?php
+        }
+        ?>
+</body>
 </html>
