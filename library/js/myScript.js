@@ -42,3 +42,42 @@ $(function() {
     });    
 });
 
+$(function() {    
+    
+    $('a.delete').on('click', function(e) {
+			
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var deleted = $(this).closest('tr');
+        var timer = 0;
+
+        $('.modal-body.delete')
+            .html('<iframe id="iFrameDelete" width="100%" scrolling="no" frameBorder="0" src="'+url+'"></iframe>');
+
+        $('#iFrameDelete').load(function() {
+            window.setTimeout(function() {
+                var height = $("#iFrameDelete").contents().find("#user-action-form").height();
+                $("#iFrameDelete").height(height);
+            }, 25);
+            timer =  setInterval(function(){
+                var height = $("#iFrameDelete").contents().find("#user-action-form").height();
+                $("#iFrameDelete").height(height);
+            }, 10);
+        });
+
+        $('.modal.delete').modal('show');
+
+        $('#saveChanges').click(function() {
+           $("#iFrameDelete").contents().find("#user-action-form").submit();
+           $('.modal.delete').modal('hide');
+           deleted.fadeOut();
+        });
+
+        $('.modal.delete').on('hidden.bs.modal', function(){
+            clearInterval(timer);
+        });
+        
+       
+	
+    });    
+});

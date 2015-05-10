@@ -203,7 +203,7 @@ class User {
         $query3 = $handler->prepare($sql3);
         $query3->bindParam(':id_', $id_, PDO::PARAM_STR);
         $query3->bindParam(':mail_', $mail, PDO::PARAM_STR);
-        $query3->bindParam(':password_', $password, PDO::PARAM_STR);
+        $query3->bindParam(':password_', md5($password), PDO::PARAM_STR);
         $query3->bindParam(':username_', $username, PDO::PARAM_STR);        
         $query3->execute();
         
@@ -231,7 +231,7 @@ class User {
         }
         $query->bindParam(':username', $username_, PDO::PARAM_STR);
         $query->bindParam(':email', $mail_, PDO::PARAM_STR);
-        $query->bindParam(':password', $password_, PDO::PARAM_STR);
+        $query->bindParam(':password', md5($password_), PDO::PARAM_STR);
         $query->execute();
 
         $handler = Connection::getInstance()->getConnection();
