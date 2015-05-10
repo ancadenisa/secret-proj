@@ -108,7 +108,6 @@ class User {
         $query->bindParam(':id_', $id_, PDO::PARAM_STR);
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
-        echo $user['id'];
         if ($user['is_suser'] != NULL) {
             Superuser::deleteUserById($id_);
         } else if ($user['is_admin'] != NULL) {
@@ -310,6 +309,16 @@ class User {
             $permissions[] = RightsConst::edit_aviz;
         }
         return $permissions;
+    }
+    
+    public static function getCurrentUserId($username){
+        $handler = Connection::getInstance()->getConnection();
+        $sql = 'SELECT `id` FROM `user` WHERE `username` = :username';
+        $query = $handler->prepare($sql);
+        $query->bindParam(':username', $username, PDO::PARAM_STR);
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return $result['id'];
     }
 
 }

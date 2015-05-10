@@ -48,10 +48,6 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary" name="addCat">Valideaza &amp; Incarca</button>
-                            <button type="button" class="btn btn-default">Inchide</button>
-                        </div>
                     </form>
     
         <script src="../../lib/jquery/jquery-2.0.3.min.js"> </script>

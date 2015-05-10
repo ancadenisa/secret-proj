@@ -30,11 +30,14 @@ $(function() {
 
         $('#saveChanges').click(function() {
            $("#iFrameAdd").contents().find("#addForm").submit();
+           $('.modal.add').modal('hide');
         });
 
         $('.modal.add').on('hidden.bs.modal', function(){
             clearInterval(timer);
         });
+        
+       
 	
     });    
 });
