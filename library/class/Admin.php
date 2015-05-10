@@ -12,7 +12,7 @@
  * @author Anca
  */
 class Admin{
-     protected  $user;
+    protected $user;
     protected $name;
     protected $birth_date;
     protected $hire_date;
