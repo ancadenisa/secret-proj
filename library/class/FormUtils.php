@@ -12,7 +12,7 @@
  * @author Anca
  */
 
-include_once './RightsConst.php';
+include_once 'RightsConst.php';
 
 class FormUtils {
     public static function isActionViewOrDel($action_){
@@ -53,6 +53,7 @@ class FormUtils {
         $permissions[] = RightsConst::forum_answer;
         $permissions[] = RightsConst::modify_theme;
         $permissions[] = RightsConst::users_alter;
+        return $permissions;
         
     }
 }
