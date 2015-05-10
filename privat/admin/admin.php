@@ -21,18 +21,18 @@ if (isset($_GET['logout'])) {
     <head>
         <title>Light Blue - Admin Template</title>
         <?php
-            if(isset($_SESSION['themeType'])){
-                if($_SESSION['themeType'] == 1){
-        
-        ?>
-        <link href="../../css/application.min.css" rel="stylesheet">
-        <link rel="shortcut icon" href="img/favicon.png">
-        
-        <?php }
-            else if($_SESSION['themeType'] == 2){       
-        ?>
-        <link href="../../white/css/application.min.css" rel="stylesheet">
-        <?php }}?>
+        if (isset($_SESSION['themeType'])) {
+            if ($_SESSION['themeType'] == 1) {
+                ?>
+                <link href="../../css/application.min.css" rel="stylesheet">
+                <link rel="shortcut icon" href="img/favicon.png">
+
+            <?php
+            } else if ($_SESSION['themeType'] == 2) {
+                ?>
+                <link href="../../white/css/application.min.css" rel="stylesheet">
+            <?php }
+        } ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -48,7 +48,7 @@ if (isset($_GET['logout'])) {
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <section class="widget">
                         <header>
                             <h4>
@@ -68,8 +68,8 @@ if (isset($_GET['logout'])) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    /*$users = User::getAllUsers();
-                                    foreach ($users as $user) */{
+                                    /* $users = User::getAllUsers();
+                                      foreach ($users as $user) */ {
                                         ?>
                                         <tr>
                                             <td>
@@ -91,7 +91,7 @@ if (isset($_GET['logout'])) {
                         </div>
                     </section>
                 </div>
-               
+
                 <div class="col-md-4">
                     <div class="row margin-bottom text-align-center">
                         <div class="col-md-8 col-md-offset-2">
@@ -99,10 +99,38 @@ if (isset($_GET['logout'])) {
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-4">
+                    <div class="row margin-bottom text-align-center">
+                        <div class="col-md-8 col-md-offset-2">
+                            <a href="addCategory.php" data-toggle="modal" data-target="#add-category" class="btn btn-lg btn-info btn-block">Adauga categorie</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-        
-        
+
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
         <!-- jquery and friends -->
         <script src="../../lib/jquery/jquery-2.0.3.min.js"></script>
         <script src="../../lib/jquery-pjax/jquery.pjax.js"></script>
@@ -217,6 +245,6 @@ if (isset($_GET['logout'])) {
             class="btn btn-transparent btn-sm">Auto</button>
             <% } %>
         </script>
-        
+
     </body>
 </html>

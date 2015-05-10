@@ -63,4 +63,18 @@ class Admin{
         $query->bindParam(':id_', $id_, PDO::PARAM_STR);
         $query->execute();
     }
+    
+    public static function addCategory($description, $visibility, $user_id){
+        $handler = Connection::getInstance()->getConnection();
+        $sql = 'INSERT INTO `category` VALUES (NULL, :description, :visibility, :created_at, :updated_at, :created_by, :updated_by)';
+        $query = $handler->prepare($sql);
+        $query->bindParam(':description', $description, PDO::PARAM_STR);
+        $query->bindParam(':visibility', $visibility, PDO::PARAM_INT);
+        $query->bindParam(':created_at', $created_at, PDO::PARAM_STR);
+        $query->bindParam(':created_at', $updated_at, PDO::PARAM_STR);
+        $query->bindParam(':created_at', $created_by, PDO::PARAM_STR);
+        $query->bindParam(':created_at', $updated_by, PDO::PARAM_STR);
+        $query->execute();
+        return $query;
+    }
 }
