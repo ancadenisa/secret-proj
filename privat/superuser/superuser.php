@@ -74,6 +74,7 @@ if (isset($_GET['logout'])) {
                                                 <a href ="../forms/user-action-form.php?action=view&id=<?php echo $user['id'] ?>" class="btn btn-sm btn-primary">Vizualizare</a>
                                                 <a href ="../forms/user-action-form.php?action=edit&id=<?php echo $user['id'] ?>" class="btn btn-sm btn-danger">Editeaza</a>
                                                 <a href ="../forms/user-action-form.php?action=delete&id=<?php echo $user['id'] ?>" class="btn btn-sm btn-success">Stergere</a>
+                                                <a href ="../alter-rights-page.php?id=<?php echo $user['id']?>" class="btn btn-warning">Alterare drepturi</a>
                                             </td>
                                         </tr>
                                     <?php } ?>

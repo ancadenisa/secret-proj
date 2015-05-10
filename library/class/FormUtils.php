@@ -11,6 +11,9 @@
  *
  * @author Anca
  */
+
+include_once './RightsConst.php';
+
 class FormUtils {
     public static function isActionViewOrDel($action_){
         if($action_ == 'edit' || $action_ == 'add'){
@@ -38,5 +41,18 @@ class FormUtils {
             return "disabled";
         }
         return " ";        
+    }
+    
+    public static function getAllPossibleRights(){
+        $permissions = array();
+        $permissions[] = RightsConst::add_aviz;
+        $permissions[] = RightsConst::add_categ_aviz;
+        $permissions[] = RightsConst::del_aviz;
+        $permissions[] = RightsConst::delete_categ_aviz;
+        $permissions[] = RightsConst::edit_aviz;
+        $permissions[] = RightsConst::forum_answer;
+        $permissions[] = RightsConst::modify_theme;
+        $permissions[] = RightsConst::users_alter;
+        
     }
 }
