@@ -110,14 +110,14 @@ class Permission {
                 AND `del_aviz` = :del_aviz AND `del_categ_aviz` = :del_categ_aviz AND `modify_theme` = :modify_theme
                 AND `users_alter` = :users_alter AND `forum_answer` = :forum_answer AND `edit_aviz` = :edit_aviz';
         $query = $handler->prepare($sql);
-        $query->bindParam(':add_aviz', $this->add_aviz, PDO::PARAM_STR);
-        $query->bindParam(':add_categ_aviz', $this->add_categ_aviz, PDO::PARAM_STR);
-        $query->bindParam(':del_aviz', $this->del_aviz, PDO::PARAM_STR);
-        $query->bindParam(':del_categ_aviz', $this->del_categ_aviz, PDO::PARAM_STR);
-        $query->bindParam(':modify_theme', $this->modify_theme, PDO::PARAM_STR);
-        $query->bindParam(':users_alter', $this->users_alter, PDO::PARAM_STR);
-        $query->bindParam(':forum_answer', $this->forum_answer, PDO::PARAM_STR);
-        $query->bindParam(':edit_aviz', $this->edit_aviz, PDO::PARAM_STR);
+        $query->bindParam(':add_aviz', $this->add_aviz, PDO::PARAM_INT);
+        $query->bindParam(':add_categ_aviz', $this->add_categ_aviz, PDO::PARAM_INT);
+        $query->bindParam(':del_aviz', $this->del_aviz, PDO::PARAM_INT);
+        $query->bindParam(':del_categ_aviz', $this->del_categ_aviz, PDO::PARAM_INT);
+        $query->bindParam(':modify_theme', $this->modify_theme, PDO::PARAM_INT);
+        $query->bindParam(':users_alter', $this->users_alter, PDO::PARAM_INT);
+        $query->bindParam(':forum_answer', $this->forum_answer, PDO::PARAM_INT);
+        $query->bindParam(':edit_aviz', $this->edit_aviz, PDO::PARAM_INT);
         $query->execute();
         $perm = $query->fetch(PDO::FETCH_ASSOC);
         if($perm == NULL){
@@ -130,14 +130,14 @@ class Permission {
         $sql = 'INSERT INTO `permission` (`add_aviz`, `add_categ_aviz`, `del_aviz`, `del_categ_aviz`, `modify_theme`, `users_alter`, `forum_answer`, `edit_aviz`) 
                 VALUES(:add_aviz, :add_categ_aviz, :del_aviz, :del_categ_aviz, :modify_theme, :users_alter, :forum_answer, :edit_aviz )';                
         $query = $handler->prepare($sql);
-        $query->bindParam(':add_aviz', $this->add_aviz, PDO::PARAM_STR);
-        $query->bindParam(':add_categ_aviz', $this->add_categ_aviz, PDO::PARAM_STR);
-        $query->bindParam(':del_aviz', $this->del_aviz, PDO::PARAM_STR);
-        $query->bindParam(':del_categ_aviz', $this->del_categ_aviz, PDO::PARAM_STR);
-        $query->bindParam(':modify_theme', $this->modify_theme, PDO::PARAM_STR);
-        $query->bindParam(':users_alter', $this->users_alter, PDO::PARAM_STR);
-        $query->bindParam(':forum_answer', $this->forum_answer, PDO::PARAM_STR);
-        $query->bindParam(':edit_aviz', $this->edit_aviz, PDO::PARAM_STR);
+        $query->bindParam(':add_aviz', $this->add_aviz, PDO::PARAM_INT);
+        $query->bindParam(':add_categ_aviz', $this->add_categ_aviz, PDO::PARAM_INT);
+        $query->bindParam(':del_aviz', $this->del_aviz, PDO::PARAM_INT);
+        $query->bindParam(':del_categ_aviz', $this->del_categ_aviz, PDO::PARAM_INT);
+        $query->bindParam(':modify_theme', $this->modify_theme, PDO::PARAM_INT);
+        $query->bindParam(':users_alter', $this->users_alter, PDO::PARAM_INT);
+        $query->bindParam(':forum_answer', $this->forum_answer, PDO::PARAM_INT);
+        $query->bindParam(':edit_aviz', $this->edit_aviz, PDO::PARAM_INT);
         $query->execute();
     }
     
@@ -145,7 +145,7 @@ class Permission {
         $handler = Connection::getInstance()->getConnection();
         $sql = 'SELECT * FROM `user` WHERE `id` = :userid_';
         $query = $handler->prepare($sql);
-        $query->bindParam(':userid_', $userid_, PDO::PARAM_STR);
+        $query->bindParam(':userid_', $userid_, PDO::PARAM_INT);
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);       
         if ($user['is_suser'] != NULL) {
@@ -156,8 +156,8 @@ class Permission {
             $sql2 = 'UPDATE secretar SET `fk_permission` = :permissionid_ WHERE `fk_user_id` = :id_';
         }
         $query2 = $handler->prepare($sql2);
-        $query2->bindParam(':id_', $userid_, PDO::PARAM_STR);
-        $query2->bindParam(':permissionid_', $this->getId(), PDO::PARAM_STR);
+        $query2->bindParam(':id_', $userid_, PDO::PARAM_INT);
+        $query2->bindParam(':permissionid_', $this->getId(), PDO::PARAM_INT);
         $query2->execute();
     }
 }

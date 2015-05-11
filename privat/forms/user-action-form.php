@@ -111,7 +111,7 @@ include_once '/../../library/class/FormUtils.php';
                                 </div>
                             </div>
                         </fieldset>
-            <a href="../superuser/superuser.php">Inapoi</a>
+                        <a href="../superuser/superuser.php"><h4>Inapoi</h4><span class="glyphicon glyphicon-arrow-left"></span></a>
                         <div class="form-actions" <?php echo FormUtils::isActionViewOrDel($_GET['action']);?>>
                             <input  type="submit" class="btn btn-primary" name="save" value="Salveaza"/>
                         </div>

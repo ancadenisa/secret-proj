@@ -56,9 +56,7 @@ class User {
     public function loginUser() {
         var_dump($this->checkUser());
         if ($user = $this->checkUser()) {
-            //var_dump($user);
-            //$user = $user->fetch(PDO::FETCH_ASSOC);
-            //var_dump($user);
+            $_SESSION['user']['id'] = $user['id'];
             if ($user['password'] == $this->password) {
                 if ($user['is_suser'] != NULL) {
                     $this->type = 'IS_SUPERUSER';
