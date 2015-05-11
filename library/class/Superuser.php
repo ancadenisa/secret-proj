@@ -35,7 +35,7 @@ class Superuser{
         $handler = Connection::getInstance()->getConnection();
         $sql     = 'SELECT * FROM `super_user` WHERE `fk_user_id` = :id';
         $query   = $handler->prepare($sql);
-        $query->bindParam(':id', $u['id'], PDO::PARAM_STR);
+        $query->bindParam(':id', $u['id'], PDO::PARAM_INT);
         $query->execute();
         $suser = $query->fetch(PDO::FETCH_ASSOC);
         $this->setName($suser['name']);
@@ -63,7 +63,7 @@ class Superuser{
         $handler = Connection::getInstance()->getConnection();
         $sql     = 'DELETE FROM `super_user` WHERE `fk_user_id` = :id_';
         $query   = $handler->prepare($sql);
-        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
         echo $id_;
     }

@@ -63,50 +63,50 @@ include_once '/../../library/class/FormUtils.php';
                             <div class="control-group">
                                 <label class="control-label" for="username">Username <span class="required">*</span></label>
                                 <div class="controls form-group">
-                                    <div class="col-sm-8"><input type="text" id="user" name="user" required="required" class="form-control" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?> value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "username");}else{echo " ";}?>"/></div>
+                                    <div class="col-sm-8"><input type="text" id="user" name="user" required="required" class="form-control" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?> value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "username");}else{echo "";}?>"/></div>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="name">Name<span class="required" >*</span></label>
                                 <div class="controls form-group">
-                                    <div class="col-sm-8"><input type="text" id="name" name="name" required="required" class="form-control" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?> value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "name");}else{echo " ";}?>"/></div>
+                                    <div class="col-sm-8"><input type="text" id="name" name="name" required="required" class="form-control" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?> value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "name");}else{echo "";}?>"/></div>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label for="date-of-birth" class="control-label">Date Of Birth <span class="required">*</span></label>
                                 <div class="controls form-group">
                                     <div class="col-sm-6">
-                                    <input type="date" name="birthdate"  class="form-control" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?> value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "birth_date");}else{echo " ";}?>"/></div>
+                                    <input type="date" name="birthdate"  class="form-control" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?> value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "birth_date");}else{echo "";}?>"/></div>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label for="date-of-hire" class="control-label">Date Of Hire <span class="required">*</span></label>
                                 <div class="controls form-group">
                                     <div class="col-sm-6">
-                                    <input type="date" name="hiredate"  class="form-control" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?> value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "hire_date");}else{echo " ";}?>"/></div>
+                                    <input type="date" name="hiredate"  class="form-control" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?> value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "hire_date");}else{echo "";}?>"/></div>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label id="email-label" for="email" class="control-label">Email <span class="required">*</span></label>
                                 <div class="controls form-group">
                                     <div class="col-xs-12 col-sm-8">
-                                        <input class="form-control" type="text" name="mail" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?>  value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "email");}else{echo " ";}?>"/>
+                                        <input class="form-control" type="text" name="mail" <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?>  value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "email");}else{echo "";}?>"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label for="password" class="control-label">Password</label>
                                 <div class="controls form-group">
-                                    <div class="col-sm-8"><input type="password" class="form-control" name="password"  <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?>  value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "password");}else{echo " ";}?>"/></div>
+                                    <div class="col-sm-8"><input type="password" class="form-control" name="password"  <?php echo FormUtils::isActionViewOrDel_readonly($_GET['action']);?>  value = "<?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "password");}else{echo "";}?>"/></div>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label for="state" class="control-label">Tip <span class="required">*</span></label>
                                 <div class="controls form-group">
                                     <select name="usertype" class="form-control" <?php echo FormUtils::isActionViewDelOrEdit_readonly($_GET['action']);?> >
-                                        <option value="superuser" <?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "superuser");}else{echo " ";}?>>Superuser</option>
-                                        <option value="admin" <?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "admin");}else{echo " ";}?> >Admin</option>
-                                        <option value="secrt" <?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "secrt");}else{echo " ";}?>>Secretara</option>
+                                        <option value="superuser" <?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "superuser");}else{echo "";}?>>Superuser</option>
+                                        <option value="admin" <?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "admin");}else{echo "";}?> >Admin</option>
+                                        <option value="secrt" <?php if(isset($_GET['id'])){echo User::getInfo($_GET['id'], "secrt");}else{echo "";}?>>Secretara</option>
                                     </select>
                                 </div>
                             </div>

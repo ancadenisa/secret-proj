@@ -47,13 +47,18 @@ class User {
         $sql = 'SELECT * FROM `user` WHERE `username` = :username';
         $query = $handler->prepare($sql);
         $query->bindParam(':username', $username, PDO::PARAM_STR);
-        $query->execute();
-        return $query;
+        $query->execute();       
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        var_dump($user);
+        return $user;
     }
 
     public function loginUser() {
+        var_dump($this->checkUser());
         if ($user = $this->checkUser()) {
-            $user = $user->fetch(PDO::FETCH_ASSOC);
+            //var_dump($user);
+            //$user = $user->fetch(PDO::FETCH_ASSOC);
+            //var_dump($user);
             if ($user['password'] == $this->password) {
                 if ($user['is_suser'] != NULL) {
                     $this->type = 'IS_SUPERUSER';
@@ -105,7 +110,7 @@ class User {
         $handler = Connection::getInstance()->getConnection();
         $sql = 'SELECT * FROM `user` WHERE `id` = :id_';
         $query = $handler->prepare($sql);
-        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
         if ($user['is_suser'] != NULL) {
@@ -121,7 +126,7 @@ class User {
         $handler = Connection::getInstance()->getConnection();
         $sql = 'DELETE FROM `user` WHERE `id` = :id_';
         $query = $handler->prepare($sql);
-        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
         //TO DO return - in Superuser, Admin, Secrt
     }
@@ -130,7 +135,7 @@ class User {
         $handler = Connection::getInstance()->getConnection();
         $sql = 'SELECT * FROM `user` WHERE `id` = :id_';
         $query = $handler->prepare($sql);
-        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
         //get other info too
@@ -167,7 +172,7 @@ class User {
 
 
             $query2 = $handler->prepare($sql2);
-            $query2->bindParam(':id_', $id_, PDO::PARAM_STR);
+            $query2->bindParam(':id_', $id_, PDO::PARAM_INT);
             $query2->execute();
             $user = $query2->fetch(PDO::FETCH_ASSOC);
         }
@@ -180,7 +185,7 @@ class User {
         $handler = Connection::getInstance()->getConnection();
         $sql = 'SELECT * FROM `user` WHERE `id` = :id_';
         $query = $handler->prepare($sql);
-        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);        
         if ($user['is_suser'] != NULL) {
@@ -194,14 +199,14 @@ class User {
             $sql4 = 'UPDATE secretar SET `name` = :name_, `birth_date` = :birthdate_, `hire_date` = :hiredate_ WHERE `id` =:userid';
         }
         $query2 = $handler->prepare($sql2);
-        $query2->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query2->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query2->execute();
         $user2 = $query2->fetch(PDO::FETCH_ASSOC);     
         
         //update
         $sql3 = 'UPDATE user SET `username` = :username_, `email` = :mail_, `password` = :password_ WHERE `id` =:id_';
         $query3 = $handler->prepare($sql3);
-        $query3->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query3->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query3->bindParam(':mail_', $mail, PDO::PARAM_STR);
         $query3->bindParam(':password_', md5($password), PDO::PARAM_STR);
         $query3->bindParam(':username_', $username, PDO::PARAM_STR);        
@@ -212,7 +217,7 @@ class User {
         $query4->bindParam(':name_', $name, PDO::PARAM_STR);
         $query4->bindParam(':birthdate_', $birthdate, PDO::PARAM_STR);
         $query4->bindParam(':hiredate_', $hiredate, PDO::PARAM_STR);
-        $query4->bindParam(':userid', $user2['id'], PDO::PARAM_STR);        
+        $query4->bindParam(':userid', $user2['id'], PDO::PARAM_INT);        
         $query4->execute();
  
     }
@@ -220,22 +225,23 @@ class User {
     public static function insertUser($username_, $mail_, $password_, $user_type_, $name_, $birthdate_, $hiredate_) {
         $handler = Connection::getInstance()->getConnection();
         if ($user_type_ == 'superuser') {
-            $query = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, 1, NULL, NULL)');
+            $query = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, :one, NULL, NULL)');
             $query2 = $handler->prepare('INSERT INTO `super_user` VALUES (NULL, :user_id, :name, :birth_date, :hire_date, 1, :created_at, :updated_at)');
         } else if ($user_type_ == 'admin') {
-            $query = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, NULL, 1, NULL)');
+            $query = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, NULL, :one, NULL)');
             $query2 = $handler->prepare('INSERT INTO `admin` VALUES (NULL, :user_id, :name, :birth_date, :hire_date, 1, :created_at, :updated_at)');
         } else {
-            $query = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, NULL, NULL, 1)');
+            $query = $handler->prepare('INSERT INTO `user` VALUES (NULL, :username, :email, :password, NULL, NULL, :one)');
             $query2 = $handler->prepare('INSERT INTO `secretar` VALUES (NULL, :user_id, :name, :birth_date, :hire_date, 1, :created_at, :updated_at)');
         }
         $query->bindParam(':username', $username_, PDO::PARAM_STR);
         $query->bindParam(':email', $mail_, PDO::PARAM_STR);
         $query->bindParam(':password', md5($password_), PDO::PARAM_STR);
+        $query->bindParam(':one', md5($password_), PDO::PARAM_INT);
         $query->execute();
 
         $handler = Connection::getInstance()->getConnection();
-        $query = $handler->prepare('SELECT `id` FROM `user` WHERE `username` = :username');
+        $query = $handler->prepare('SELECT * FROM `user` WHERE `username` = :username');
         $query->bindParam(':username', $username_, PDO::PARAM_STR);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -258,7 +264,7 @@ class User {
         $handler = Connection::getInstance()->getConnection();
         $sql = 'SELECT * FROM `user` WHERE `id` = :id_';
         $query = $handler->prepare($sql);
-        $query->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
         if ($user['is_suser'] != NULL) {
@@ -274,13 +280,13 @@ class User {
 
 
         $query2 = $handler->prepare($sql2);
-        $query2->bindParam(':id_', $id_, PDO::PARAM_STR);
+        $query2->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query2->execute();
         $user = $query2->fetch(PDO::FETCH_ASSOC);
 
         $sql = 'SELECT * FROM `permission` WHERE `id` = :id_';
         $query = $handler->prepare($sql);
-        $query->bindParam(':id_', $user['fk_permission'], PDO::PARAM_STR);
+        $query->bindParam(':id_', $user['fk_permission'], PDO::PARAM_INT);
         $query->execute();
         $permission = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -294,7 +300,7 @@ class User {
             $permissions[] = RightsConst::add_categ_aviz;
         }
         if ($permission['del_categ_aviz'] == 1) {
-            $permissions[] = RightsConst::del_categ_aviz;
+            $permissions[] = RightsConst::delete_categ_aviz;
         }
         if ($permission['modify_theme'] == 1) {
             $permissions[] = RightsConst::modify_theme;
@@ -313,7 +319,7 @@ class User {
     
     public static function getCurrentUserId($username){
         $handler = Connection::getInstance()->getConnection();
-        $sql = 'SELECT `id` FROM `user` WHERE `username` = :username';
+        $sql = 'SELECT * FROM `user` WHERE `username` = :username';
         $query = $handler->prepare($sql);
         $query->bindParam(':username', $username, PDO::PARAM_STR);
         $query->execute();

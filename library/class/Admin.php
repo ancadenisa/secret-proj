@@ -33,7 +33,7 @@ class Admin{
         $handler = Connection::getInstance()->getConnection();
         $sql     = 'SELECT * FROM `admin` WHERE `fk_user_id` = :id';
         $query   = $handler->prepare($sql);
-        $query->bindParam(':id', $this->user->$user['id'], PDO::PARAM_STR);
+        $query->bindParam(':id', $user['id'], PDO::PARAM_INT);
         $query->execute();
         $suser = $suser->fetch(PDO::FETCH_ASSOC);
         $this->setName($suser['name']);

@@ -50,7 +50,6 @@ if (isset($_POST['changeRights'])) {
         } else {
             $permissionObj->insertPermissionToDB();
             $id = $permissionObj->getPermissionId();
-            var_dump($id);
             $permissionObj->setId($id);
             $permissionObj->addThisPermisssionToCurrentUser($_GET['id']);
         }
