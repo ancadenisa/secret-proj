@@ -25,7 +25,6 @@
         include_once '/../../library/class/FormUtils.php';
         print "Aici se va regasi formularul de editate a unei postari text cu id-ul ". $_GET['id'];
             $post = Post::getPostById($_GET['id']);
-            var_dump($post);
             if (isset($_POST['save'])) {
                $title = $_POST['title'];
                $content = $_POST['content'];
@@ -52,7 +51,7 @@
                         <div class="controls form-group">
                             <div class="col-sm-8">
                                 <textarea id="content" name="content" required="required" 
-                                          placeholder="<?php echo $post['content']?>" class="form-control"/></textarea>
+                                           class="form-control"/><?php echo $post['content']?></textarea>
                             </div>
                         </div>
                     </div>
