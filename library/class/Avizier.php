@@ -13,6 +13,7 @@
  */
 include_once 'Connection.php';
 
+
 class Avizier {
 
     public static function getAllAviziere() {
@@ -46,6 +47,13 @@ class Avizier {
         $query->execute();
         $category = $query->fetch(PDO::FETCH_ASSOC);
         return $category['name'];
+    }
+    
+    public static function deleteAvizierById($id_){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('DELETE FROM `notice_board` WHERE `id` = :id_');
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
+        $query->execute();
     }
 
 }
