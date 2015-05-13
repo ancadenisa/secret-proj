@@ -29,6 +29,7 @@
                $title = $_POST['title'];
                $content = $_POST['content'];
                Post::editPost($title, $content, $_GET['id']);
+               header("location: secret-edit-aviz-post-list.php?id=".$_GET['avizierId']."&tip=text");
             }
             ?>
 

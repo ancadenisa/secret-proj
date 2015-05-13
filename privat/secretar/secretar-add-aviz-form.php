@@ -28,6 +28,7 @@
                $title = $_POST['title'];
                $description = $_POST['description'];
                Avizier::insertAvizier($type, $title, $description);
+               header("location: secretar.php");
             }
             ?>
 

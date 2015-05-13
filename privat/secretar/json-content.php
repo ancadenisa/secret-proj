@@ -9,12 +9,11 @@
  */
 
 include_once '../../library/class/Avizier.php';
-//header('Content-Type: application/json');
-//var_dump($_POST['delAviz']);
- if (isset($_POST['delAviz'])) {
-    Avizier::deleteAvizierById($_POST['id']);
-    //header("location: ../login.php")
-}
+include_once '../../library/class/Post.php';
 
+    if(isset($_POST['del']))
+        Avizier::deleteAvizierById($_POST['id']);
+    if(isset($_POST['delPost']))
+        Post::deletePostById($_POST['id']);
 
 ?>

@@ -132,4 +132,11 @@ class Post {
         $query->bindParam(':updated_by', $_SESSION['user']['id'], PDO::PARAM_STR);
         $query->execute();      
     }
+    
+    public static function deletePostById($id_){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('DELETE FROM `post` WHERE `id` = :id_');
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
+        $query->execute();
+    }
 }

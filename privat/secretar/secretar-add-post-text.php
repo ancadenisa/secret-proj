@@ -24,11 +24,12 @@
         include_once '/../../library/class/FormUtils.php';
         print "Aici se va regasi formularul de adaugare a unei postari text pentru avizierul cu id-ul ". $_GET['avizierId'];
 
-//back button
+//back button   
             if (isset($_POST['save'])) {
                $title = $_POST['title'];
                $content = $_POST['content'];
                Post::insertPost($title, $content, $_GET['avizierId']);
+               header("location: secret-edit-aviz-post-list.php?id=".$_GET['avizierId']."&tip=text");
             }
             ?>
 

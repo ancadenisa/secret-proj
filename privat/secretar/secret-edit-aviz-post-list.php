@@ -74,7 +74,7 @@ if (isset($_GET['logout'])) {
                                                     <?php }if ($_GET['tip'] == "mixt") { ?>
                                                         <a href="secretar-edit-post-mixt.php?avizierId=<?php echo $_GET['id']?>&id=<?php echo $post['id']?>" class="btn btn-sm btn-danger">Editeaza postare</a>
                                                     <?php } ?>                                                    
-                                                        <a  class="btn btn-sm btn-success">Stergere</a>
+                                                        <a  onclick="myFunction(<?php echo $post['id'];?>)" class="btn btn-sm btn-success">Stergere</a>
                                                 </td>
                                             </tr>
                                         <?php
@@ -218,6 +218,22 @@ if (isset($_GET['logout'])) {
             data-value="auto"
             class="btn btn-transparent btn-sm">Auto</button>
             <% } %>
+        </script>
+        <script>
+                                                function myFunction(id) {
+                                                    if (confirm("Sigur doriti stergerea postarii?")) {
+                                                        jQuery.ajax({
+                                                            type: "POST",
+                                                            url: 'json-content.php',
+                                                            dataType: 'json',
+                                                            data: {delPost: 'delPost', id: id},
+                                                            success: function (data) {
+                                                                alert(id);
+                                                            }
+                                                        });
+                                                        window.location.reload();
+                                                    }                                                   
+                                                }
         </script>
 
     </body>

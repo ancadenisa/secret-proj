@@ -207,36 +207,20 @@ if (isset($_GET['logout'])) {
         </script>
 
         <script>
-                                                        function myFunction(id) {
-                                                            if (confirm("Avizierul poate contine postari multiple. Sigur doriti stergerea acestuia?")) {
-                                                                console.log("test");
-                                                                $(document).ready(function () { 
-                                                                        console.log(id);
-                                                                        $.post("json-content.php",
-                                                                                {
-                                                                                    delAviz: "Yes",
-                                                                                    id: id
-                                                                                });                                                                    
-                                                                });
-                                                                //window.location.href = "./json-content.php";
-//                                                        jQuery.ajax({
-//                                                            type: "POST",
-//                                                            url: 'json-content.php',
-//                                                            dataType: 'json',
-//                                                            data: {del: 'delAviz', arguments: [id]},
-//                                                            success: function (data) {
-//                                                                alert(id);
-//                                                            }
-//                                                        });
-
-                                                                /*jQuery.getJSON(
-                                                                 "json-content.php",
-                                                                 {del: 'delAviz', arguments: id},
-                                                                 function (data) {
-                                                                 alert(id); 
-                                                                 });*/
+                                                function myFunction(id) {
+                                                    if (confirm("Avizierul poate contine postari multiple. Sigur doriti stergerea acestuia?")) {
+                                                        jQuery.ajax({
+                                                            type: "POST",
+                                                            url: 'json-content.php',
+                                                            dataType: 'json',
+                                                            data: {del: 'delAviz', id: id},
+                                                            success: function (data) {
+                                                                alert(id);
                                                             }
-                                                        }
+                                                        });
+                                                        window.location.reload();
+                                                    }                                                   
+                                                }
         </script>
 
     </body>
