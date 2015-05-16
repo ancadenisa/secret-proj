@@ -118,6 +118,13 @@ class Post {
         echo $_SESSION['user']['id'];
         $query->bindParam(':userId', $_SESSION['user']['id'], PDO::PARAM_INT);
         $query->execute();
+        
+        $sql = 'SELECT `id` FROM `post` WHERE `title` = :title';
+        $query = $handler->prepare($sql);
+        $query->bindParam(':title', $title_, PDO::PARAM_STR);
+        $query->execute();
+        $post = $query->fetch(PDO::FETCH_ASSOC);
+        return $post['id'];
     }
     
     public static function editPost($title_, $content, $id_){

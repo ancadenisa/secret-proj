@@ -49,12 +49,12 @@ class User {
         $query->bindParam(':username', $username, PDO::PARAM_STR);
         $query->execute();       
         $user = $query->fetch(PDO::FETCH_ASSOC);
-        var_dump($user);
+        //var_dump($user);
         return $user;
     }
 
     public function loginUser() {
-        var_dump($this->checkUser());
+        //var_dump($this->checkUser());
         if ($user = $this->checkUser()) {
             $_SESSION['user']['id'] = $user['id'];
             if ($user['password'] == $this->password) {
