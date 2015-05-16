@@ -90,6 +90,16 @@ if (isset($_GET['logout'])) {
                             <a href="../forms/user-action-form.php?action=add" class="btn btn-lg btn-success btn-block">Adauga utilizator</a>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="col-md-4">
+                    <div class="row margin-bottom text-align-center">
+                        <div class="col-md-8 col-md-offset-2">
+                            <a href="../privat-questions/question-list.php" class="btn btn-lg btn-info btn-block">
+                                <span class="glyphicon glyphicon-envelope"></span>   Intrebari forum</a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
