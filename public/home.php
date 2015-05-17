@@ -6,10 +6,10 @@ and open the template in the editor.
 -->
 
 <?php 
-    include '../library/class/Avizier.php';
-    include '../library/class/Post.php'
+    include '/../library/class/Avizier.php';
+    include '/../library/class/Post.php'
     $aviziere = Avizier::getAllAviziere();
-    
+    $posts = Post::getAllPosts();
 ?>
 
 <section class="widget">
