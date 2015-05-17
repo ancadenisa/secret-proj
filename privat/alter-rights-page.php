@@ -4,22 +4,22 @@
         <title></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+         <link href="../css/application.min.css" rel="stylesheet">
         <?php
         if (isset($_SESSION['themeType'])) {
             if ($_SESSION['themeType'] == 1) {
                 ?>
-                <link href="../../css/application.min.css" rel="stylesheet">
+                <link href="../css/application.min.css" rel="stylesheet">
                 <link rel="shortcut icon" href="img/favicon.png">
 
             <?php
             } else if ($_SESSION['themeType'] == 2) {
                 ?>
-                <link href="../../white/css/application.min.css" rel="stylesheet">
+                <link href="../white/css/application.min.css" rel="stylesheet">
             <?php }
         } ?>
 
-    </head>
-    <body class="background-dark">
 <?php
 
 /*
@@ -79,7 +79,7 @@ if (isset($_POST['changeRights'])) {
     }
 }
 ?>
-
+<body class="background-dark">
 <h3 align="center"> Drepturi disponibile: </h3>
 <div class="content container">
 <table align="center" width="300" border="1">
@@ -108,43 +108,45 @@ if (isset($_POST['changeRights'])) {
     <a href="superuser/superuser.php">
     <span class="glyphicon glyphicon-arrow-left"></span></a>
 </form>
+
+
    <!-- jquery and friends -->
-        <script src="../../lib/jquery/jquery-2.0.3.min.js"></script>
-        <script src="../../lib/jquery-pjax/jquery.pjax.js"></script>
+        <script src="../lib/jquery/jquery-2.0.3.min.js"></script>
+        <script src="../lib/jquery-pjax/jquery.pjax.js"></script>
 
 
         <!-- jquery plugins -->
-        <script src="../../lib/jquery-maskedinput/jquery.maskedinput.js"></script>
-        <script src="../../lib/parsley/parsley.js"></script>
-        <script src="../../lib/icheck.js/jquery.icheck.js"></script>
-        <script src="../../lib/select2.js"></script>
+        <script src="../lib/jquery-maskedinput/jquery.maskedinput.js"></script>
+        <script src="../lib/parsley/parsley.js"></script>
+        <script src="../lib/icheck.js/jquery.icheck.js"></script>
+        <script src="../lib/select2.js"></script>
 
 
         <!--backbone and friends -->
-        <script src="../../lib/backbone/underscore-min.js"></script>
+        <script src="../lib/backbone/underscore-min.js"></script>
 
         <!-- bootstrap default plugins -->
-        <script src="../../lib/bootstrap/transition.js"></script>
-        <script src="../../lib/bootstrap/collapse.js"></script>
-        <script src="../../lib/bootstrap/alert.js"></script>
-        <script src="../../lib/bootstrap/tooltip.js"></script>
-        <script src="../../lib/bootstrap/popover.js"></script>
-        <script src="../../lib/bootstrap/button.js"></script>
-        <script src="../../lib/bootstrap/dropdown.js"></script>
-        <script src="../../lib/bootstrap/modal.js"></script>
+        <script src="../lib/bootstrap/transition.js"></script>
+        <script src="../lib/bootstrap/collapse.js"></script>
+        <script src="../lib/bootstrap/alert.js"></script>
+        <script src="../lib/bootstrap/tooltip.js"></script>
+        <script src="../lib/bootstrap/popover.js"></script>
+        <script src="../lib/bootstrap/button.js"></script>
+        <script src="../lib/bootstrap/dropdown.js"></script>
+        <script src="../lib/bootstrap/modal.js"></script>
 
         <!-- bootstrap custom plugins -->
-        <script src="../../lib/bootstrap-datepicker.js"></script>
-        <script src="../../lib/bootstrap-select/bootstrap-select.js"></script>
-        <script src="../../lib/wysihtml5/wysihtml5-0.3.0_rc2.js"></script>
-        <script src="../../lib/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+        <script src="../lib/bootstrap-datepicker.js"></script>
+        <script src="../lib/bootstrap-select/bootstrap-select.js"></script>
+        <script src="../lib/wysihtml5/wysihtml5-0.3.0_rc2.js"></script>
+        <script src="../lib/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
 
         <!-- basic application js-->
-        <script src="../../js/app.js"></script>
-        <script src="../../js/settings.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/settings.js"></script>
 
         <!-- page specific -->
-        <script src="../../js/forms.js"></script>
+        <script src="../js/forms.js"></script>
 
         <script type="text/template" id="settings-template">
             <div class="setting clearfix">
