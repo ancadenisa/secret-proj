@@ -7,7 +7,9 @@ and open the template in the editor.
 
 <?php 
     include '../library/class/Avizier.php';
-    $avizier = Avizier::getAllAviziere();
+    include '../library/class/Post.php'
+    $aviziere = Avizier::getAllAviziere();
+    
 ?>
 
 <section class="widget">

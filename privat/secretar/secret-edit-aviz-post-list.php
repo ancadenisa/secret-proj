@@ -21,7 +21,7 @@ if (isset($_GET['logout'])) {
 <html>
     <head>
         <title>Secretar</title>
-        <link href="../css/application.min.css" rel="stylesheet">
+        <link href="../../css/application.min.css" rel="stylesheet">
         <link rel="shortcut icon" href="img/favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
