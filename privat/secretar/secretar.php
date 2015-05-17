@@ -4,7 +4,7 @@ include_once '../../library/config.php';
 include_once '../../library/class/Avizier.php';
 
 
-if (isset($_GET['logout'])) {
+if (isset($_POST['logout'])) {
     if (isset($_SESSION['user']['is_logged'])) {
         unset($_SESSION['user']['is_logged']);
         unset($_SESSION['user']['username']);
@@ -97,6 +97,24 @@ if (isset($_GET['logout'])) {
                     <div class="row margin-bottom text-align-center">
                         <div class="col-md-8 col-md-offset-2">
                             <a href="secretar-add-aviz-form.php" class="btn btn-lg btn-success btn-block">Adauga avizier</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row margin-bottom text-align-center">
+                        <div class="col-md-8 col-md-offset-2">
+                            <a href="../privat-questions/question-list.php" class="btn btn-lg btn-info btn-block">
+                                <span class="glyphicon glyphicon-envelope"></span>   Intrebari forum</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4">
+                    <div class="row margin-bottom text-align-center">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form method="POST">
+                            <input type="submit" name="logout" value="Log Out" class="btn btn-warning btn-lg">
+                            </form>
                         </div>
                     </div>
                 </div>
