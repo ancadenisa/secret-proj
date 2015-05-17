@@ -81,5 +81,15 @@ class Question {
         $query->execute();
         
     }
+    
+    public static function getNumberOfQuestions(){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('SELECT * FROM `question`');
+        $query->execute();
+        $questions = array();
+        while ($question = $query->fetch(PDO::FETCH_ASSOC))
+            $questions[] = $question;
+        return count($questions);
+    }
 
 }
