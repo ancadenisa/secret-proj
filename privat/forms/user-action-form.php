@@ -56,10 +56,6 @@ include_once '/../../library/class/FormUtils.php';
                           method="post"
                           data-parsley-priority-enabled="false">
                         <fieldset>
-                            <legend>Account Edit Form <small>Some explanation text</small></legend>
-                        </fieldset>
-                        <fieldset>
-                            <legend class="section">Personal Info</legend>
                             <div class="control-group">
                                 <label class="control-label" for="username">Username <span class="required">*</span></label>
                                 <div class="controls form-group">

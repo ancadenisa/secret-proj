@@ -9,7 +9,7 @@
 /**
  * Description of RightsConst
  *
- * @author Anca
+ * @author Mihai
  */
 interface RightsConst {
     const add_aviz = "Adaugare avizier";

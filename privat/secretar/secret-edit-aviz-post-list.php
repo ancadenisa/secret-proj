@@ -47,7 +47,6 @@ if (isset($_GET['logout'])) {
                                     <tr>
                                         <th>#</th>
                                         <th>Titlu Postare</th>
-                                        <th>Categorie</th>
                                         <th></th>   
                                     </tr>
                                 </thead>
@@ -67,12 +66,6 @@ if (isset($_GET['logout'])) {
                                                 <td>
                                                     <?php if ($_GET['tip'] == "text") { ?>
                                                     <a href="secretar-edit-post-text.php?avizierId=<?php echo $_GET['id']?>&id=<?php echo $post['id'] ?>" class="btn btn-sm btn-danger">Editeaza postare</a>
-                                                    <?php }if ($_GET['tip'] == "foto") { ?>
-                                                        <a href="secretar-edit-post-foto.php?avizierId=<?php echo $_GET['id']?>&id=<?php echo $post['id']?>" class="btn btn-sm btn-danger">Editeaza postare</a>
-                                                    <?php }if ($_GET['tip'] == "docs") { ?>
-                                                        <a href="secretar-edit-post-docs.php?avizierId=<?php echo $_GET['id']?>&id=<?php echo $post['id']?>" class="btn btn-sm btn-danger">Editeaza postare</a>
-                                                    <?php }if ($_GET['tip'] == "mixt") { ?>
-                                                        <a href="secretar-edit-post-mixt.php?avizierId=<?php echo $_GET['id']?>&id=<?php echo $post['id']?>" class="btn btn-sm btn-danger">Editeaza postare</a>
                                                     <?php } ?>                                                    
                                                         <a  onclick="myFunction(<?php echo $post['id'];?>)" class="btn btn-sm btn-success">Stergere</a>
                                                 </td>

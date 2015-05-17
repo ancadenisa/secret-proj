@@ -113,6 +113,16 @@ if (isset($_GET['logout'])) {
                     </div>
                     
                 </div>
+                
+                <div class="col-md-4">
+                    <div class="row margin-bottom text-align-center">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form method="POST">
+                            <input type="submit" name="logout" value="Log Out" class="btn btn-warning btn-lg">
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

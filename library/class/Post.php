@@ -9,7 +9,7 @@
 /**
  * Description of Post
  *
- * @author Anca
+ * @author Mihai
  */
 include_once 'Connection.php';
 class Post {

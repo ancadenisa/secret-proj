@@ -94,6 +94,7 @@
                   } else {
                    echo "Error: No file uploaded";
                   }
+                  header("location: secret-edit-aviz-post-list.php?id=".$_GET['avizierId']."&tip=foto");
             }
             ?>
 

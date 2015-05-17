@@ -31,7 +31,7 @@ $themeType = Theme::getCurrentTheme();
             <header class="page-header">
                 <div class="navbar" id="side-nav">
                     <div class="logo pull-left">
-                        <h4><strong>Avizier Online</strong><small> de bo$$i</small></h4>
+                        <h4><strong>Avizier Online</strong></h4>
                     </div>
                     <ul class="nav navbar-nav pull-right navbar-menu hidden-xs">
                         <li class="active">

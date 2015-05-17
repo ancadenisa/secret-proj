@@ -9,7 +9,7 @@
 /**
  * Description of Admin
  *
- * @author Anca
+ * @author Mihai
  */
 class Admin{
     protected $user;

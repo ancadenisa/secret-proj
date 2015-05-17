@@ -26,7 +26,7 @@
                $title = $_POST['title'];
                $content = $_POST['content'];
                Question::insertQuestion($title, $content);
-               header("location: forum.php");
+               header("location: ../index.php?page=forum");
             }
             ?>
 

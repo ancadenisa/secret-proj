@@ -9,7 +9,7 @@
 /**
  * Description of Permission
  *
- * @author Anca
+ * @author Mihai
  */
 class Permission {
     //put your code here

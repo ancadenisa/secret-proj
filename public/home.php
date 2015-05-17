@@ -9,8 +9,7 @@ and open the template in the editor.
     include '/../library/class/Avizier.php';
     include '/../library/class/Post.php';
 
-    $aviziere = Avizier::getAllAviziere();
-    $posts = Post::getAllPosts();
+  
 
     include '/../library/class/Question.php';
     include '/../library/class/Answer.php';
