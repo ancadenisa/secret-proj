@@ -22,7 +22,7 @@ include_once '/../library/class/Answer.php';
     <div class="body">
         <div class="panel-group" id="accordion2">
             <?php
-            $questions = Question::getAllQuestions();
+            $questions = Question::getAllVisibleQuestions();
             foreach ($questions as $question) {
                 ?>
                 <div class="panel">

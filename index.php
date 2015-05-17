@@ -8,7 +8,7 @@
 
 <html>
     <head>
-        <title>Light Blue - Admin Template</title>
+        <title>Avizier Online</title>
         
         
         
@@ -27,6 +27,9 @@
                               ?>
             <header class="page-header">
                 <div class="navbar" id="side-nav">
+                    <div class="logo pull-left">
+                        <h4><strong>Avizier Online</strong><small> de bo$$i</small></h4>
+                    </div>
                     <ul class="nav navbar-nav pull-right navbar-menu hidden-xs">
                         <li class="active">
                             <a href="./index.php">
@@ -83,8 +86,7 @@
                 ?>
             </div>
         </div>
-        <h2 class="thanks text-align-center">Thanks for watching!</h2>
-        <p class="lead text-align-center"><a class="back-to-top" href="#"> back to top <i class="fa fa-angle-up"></i></a></p>
+        <p class="lead text-align-center"><a class="back-to-top" href="#"> Inapoi sus <i class="fa fa-angle-up"></i></a></p>
 
         <!-- jquery and friends -->
         <script src="lib/jquery/jquery-2.0.3.min.js"> </script>

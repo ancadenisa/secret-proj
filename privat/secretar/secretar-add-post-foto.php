@@ -15,19 +15,7 @@
         <title></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php
-        if (isset($_SESSION['themeType'])) {
-            if ($_SESSION['themeType'] == 1) {
-                ?>
-                <link href="../../css/application.min.css" rel="stylesheet">
-                <link rel="shortcut icon" href="img/favicon.png">
-
-            <?php
-            } else if ($_SESSION['themeType'] == 2) {
-                ?>
-                <link href="../../white/css/application.min.css" rel="stylesheet">
-            <?php }
-        } ?>
+        <link href="../css/application.min.css" rel="stylesheet">
 
     </head>
     <body>
