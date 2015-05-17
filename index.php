@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 
-<?php include_once './library/class/Category.php' ;?>
+<?php include_once './library/class/Category.php' ;
+      include_once './library/class/Theme.php';
+    
+        $themeType = Theme::getCurrentTheme();
+?>
 
 <html>
     <head>
         <title>Light Blue - Admin Template</title>
+        
+        
+        
         <link href="css/application.min.css" rel="stylesheet">
         <link rel="shortcut icon" href="img/favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +20,7 @@
         <meta charset="utf-8">
         
     </head>
-    <body class="background landing">
+    <body class="background-<?php if($themeType == 1){echo 'dark';} else {echo 'light';} ?> landing">
         <div class="container">
             <?php 
                                 
@@ -55,7 +62,7 @@
                 </div>
             </header>
         </div>
-        <div id="about" class="widget widget-white widget-about">
+        <div id="about" class="widget widget-normal widget-about">
             <div class="container">
                 <?php 
                     if(isset($_GET['page'])){

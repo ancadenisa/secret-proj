@@ -8,6 +8,9 @@ and open the template in the editor.
 <?php
 include_once '../library/class/Avizier.php';
 include_once '../library/class/FileUnitProcessor.php';
+include_once '../library/class/Theme.php';
+    
+        $themeType = Theme::getCurrentTheme();
 ?>
 
 <html>
@@ -16,7 +19,7 @@ include_once '../library/class/FileUnitProcessor.php';
         <title></title>
         <link href="../css/application.min.css" rel="stylesheet">
     </head>
-    <body class="background-dark">
+    <body class="background-<?php if($themeType == 1){echo 'dark';} else {echo 'light';} ?>">
         <div class="container" style="margin-top: 30px;">
             <?php
             if (isset($_GET['id'])) {

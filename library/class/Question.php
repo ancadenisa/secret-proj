@@ -12,8 +12,10 @@
  * @author Anca
  */
 include_once 'Connection.php';
+
 class Question {
-    public static function getAllQuestions(){
+
+    public static function getAllQuestions() {
         $handler = Connection::getInstance()->getConnection();
         $query = $handler->prepare('SELECT * FROM `question`');
         $query->execute();
@@ -33,42 +35,42 @@ class Question {
         return $allQuestions;
     }
     
-    public static function getQuestionById($id_, $property_){
+    public static function getQuestionById($id_, $property_) {
         $handler = Connection::getInstance()->getConnection();
         $query = $handler->prepare('SELECT * FROM `question` WHERE `id` = :id_');
         $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
         $question = $query->fetch(PDO::FETCH_ASSOC);
-        switch ($property_){
+        switch ($property_) {
             case "title":
                 return $question['title'];
             case "content":
                 return $question['content'];
         }
     }
-    
-    public static function deleteQuestionById($id_){
+
+    public static function deleteQuestionById($id_) {
         $handler = Connection::getInstance()->getConnection();
         $query = $handler->prepare('DELETE FROM `question` WHERE `id` = :id_');
         $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
     }
-    
-    public static function setVisible($id_){
+
+    public static function setVisible($id_) {
         $handler = Connection::getInstance()->getConnection();
-        $query2= $handler->prepare('UPDATE `question` SET `visible` = 1 WHERE `id` = :id');
+        $query2 = $handler->prepare('UPDATE `question` SET `visible` = 1 WHERE `id` = :id');
         $query2->bindParam(':id', $id_, PDO::PARAM_INT);
         $query2->execute();
     }
-    
-    public static function setNotVisible($id_){
+
+    public static function setNotVisible($id_) {
         $handler = Connection::getInstance()->getConnection();
-        $query2= $handler->prepare('UPDATE `question` SET `visible` = 0 WHERE `id` = :id');
+        $query2 = $handler->prepare('UPDATE `question` SET `visible` = 0 WHERE `id` = :id');
         $query2->bindParam(':id', $id_, PDO::PARAM_INT);
         $query2->execute();
     }
-    
-    public static function insertQuestion($title_, $content_){
+
+    public static function insertQuestion($title_, $content_) {
         $handler = Connection::getInstance()->getConnection();
         $query = $handler->prepare('INSERT INTO `question` VALUES(NULL, :title, :content, :false, :false)');
         $false_ = 0;
@@ -79,4 +81,5 @@ class Question {
         $query->execute();
         
     }
+
 }

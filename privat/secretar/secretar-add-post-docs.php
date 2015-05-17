@@ -1,30 +1,10 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../../css/application.min.css" rel="stylesheet">
-
-    </head>
-    <body>
-        <?php
-        /*
-         * To change this license header, choose License Headers in Project Properties.
-         * To change this template file, choose Tools | Templates
-         * and open the template in the editor.
-         */
-//un formular care in functie de tipul de actiune dorita va avea ca buton de submit\
-//editare(alveaza informatii editeaza + campurile formularului vor fi read write)
-//stergere(se sterge inregistrarea curenta + campurile vor fi read only)
-//vizualizare (campuri read -only)
-
-
+<?php
+        
         include_once '/../../library/class/Post.php';
         include_once '/../../library/class/FormUtils.php';
-        print "Aici se va regasi formularul de adaugare a unei postari docs pentru avizierul cu id-ul ". $_GET['avizierId']."\n";
+        
 
-//back button
+
             if (isset($_POST['save'])) {
                $title = $_POST['title'];
                $content = $_POST['content'];
@@ -86,6 +66,30 @@
             }
             ?>
 
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php
+        if (isset($_SESSION['themeType'])) {
+            if ($_SESSION['themeType'] == 1) {
+                ?>
+                <link href="../../css/application.min.css" rel="stylesheet">
+                <link rel="shortcut icon" href="img/favicon.png">
+
+            <?php
+            } else if ($_SESSION['themeType'] == 2) {
+                ?>
+                <link href="../../white/css/application.min.css" rel="stylesheet">
+            <?php }
+        } ?>
+
+    </head>
+    <body>
+        
         <form id="aviz-text-post-add-form" class="form-horizontal label-left"
                   novalidate="novalidate"
                   method="post"

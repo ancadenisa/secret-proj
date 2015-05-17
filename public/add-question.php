@@ -26,7 +26,7 @@
                $title = $_POST['title'];
                $content = $_POST['content'];
                Question::insertQuestion($title, $content);
-               header("location: question-answer.php");
+               header("location: forum.php");
             }
             ?>
 
@@ -53,7 +53,7 @@
                     </div>
                 </fieldset>
 
-                <a href="question-answer.php"><h4>Inapoi</h4><span class="glyphicon glyphicon-arrow-left"></span></a>
+                <a href="../index.php?page=forum"><h4>Inapoi</h4><span class="glyphicon glyphicon-arrow-left"></span></a>
                 <div class="form-actions">
                         <input  type="submit" onclick = 'alert("Intrebarea dumneavoastra va fi vizibila dupa ce un utlizator al spatiului privat o va aproba")' class="btn btn-primary" name="save" value="Salveaza"/>
                 </div>
