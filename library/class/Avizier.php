@@ -71,5 +71,15 @@ class Avizier {
         $query->execute();
         return $query;
     }
+    
+    public static function getNumberOfAviziere(){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('SELECT * FROM `notice_board`');
+        $query->execute();
+        $notice_boards = array();
+        while ($curr_notice = $query->fetch(PDO::FETCH_ASSOC))
+            $notice_boards[] = $curr_notice;
+        return count($notice_boards);
+    }
 
 }

@@ -9,7 +9,7 @@
 /**
  * Description of SuperUser
  *
- * @author Anca
+ * @author radu
  */
 include_once 'User.php';
 

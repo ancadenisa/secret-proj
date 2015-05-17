@@ -9,7 +9,7 @@
 /**
  * Description of Answer
  *
- * @author Anca
+ * @author Radu
  */
 include_once 'Connection.php';
 class Answer {
@@ -39,5 +39,17 @@ class Answer {
             $answers[] = $currAnswer;
         return $answers;  
     }
+    
+    public static function getNumberOfAnswers(){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('SELECT * FROM `answer`');
+        $query->execute();
+        $questions = array();
+        while ($question = $query->fetch(PDO::FETCH_ASSOC))
+            $questions[] = $question;
+        return count($questions);
+    }
+    
+    
 
 }

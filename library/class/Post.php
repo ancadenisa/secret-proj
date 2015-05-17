@@ -146,4 +146,14 @@ class Post {
         $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
     }
+    
+    public static function getNumberOfPosts(){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('SELECT * FROM `post`');
+        $query->execute();
+        $posts = array();
+        while ($post = $query->fetch(PDO::FETCH_ASSOC))
+            $posts[] = $post;
+        return count($posts);
+    }
 }
