@@ -35,7 +35,8 @@
                     $ext = substr($filename, strrpos($filename, '.') + 1);
                     if ($_FILES["uploaded_file"]["size"] < 3500000){
                       //Determine the path to which we want to save this file
-                        $newname = '../../uploads/docs'.$filename;
+                        $newname = '../../uploads/docs/'.$filename;
+                        $path = 'uploads/docs/'.$filename;
                         //Check if the file with the same name is already exists on the server
                         if (!file_exists($newname)) {
                           //Attempt to move the uploaded file to it's new place
@@ -49,7 +50,7 @@
                              $updated_at = date('Y-m-d H:m:s'); 
                              $query->bindParam(':name', $filename, PDO::PARAM_STR);
                              $query->bindParam(':type', $ext, PDO::PARAM_STR);
-                             $query->bindParam(':path', $newname, PDO::PARAM_STR);
+                             $query->bindParam(':path', $path, PDO::PARAM_STR);
                              $query->bindParam(':created_at', $created_at, PDO::PARAM_STR);
                              $query->bindParam(':updated_at', $updated_at, PDO::PARAM_STR);
                              $query->bindParam(':size', $_FILES["uploaded_file"]["size"], PDO::PARAM_INT);

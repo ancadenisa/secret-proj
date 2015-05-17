@@ -8,6 +8,8 @@
  * and open the template in the editor.
  */
 
+
+
 include_once '../../library/class/Avizier.php';
 include_once '../../library/class/Post.php';
 

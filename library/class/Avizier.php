@@ -55,5 +55,21 @@ class Avizier {
         $query->bindParam(':id_', $id_, PDO::PARAM_INT);
         $query->execute();
     }
+    
+    public static function getAvizierByCatId($id_){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('SELECT * FROM `notice_board` WHERE `id_cat` = :id_');
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
+        $query->execute();
+        return $query;
+    }
+    
+    public static function getAllPostsByAvizierId($id_){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('SELECT * FROM `post` WHERE `fk_aviz` = :id_');
+        $query->bindParam(':id_', $id_, PDO::PARAM_INT);
+        $query->execute();
+        return $query;
+    }
 
 }

@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-print "Aici se va regasi formularul de adaugare a unei postari de fotogafii pentru avizierul cu id-ul ". $_GET['avizierId'];
+//print "Aici se va regasi formularul de adaugare a unei postari de fotogafii pentru avizierul cu id-ul ". $_GET['avizierId'];
 ?>
 
 <html>
@@ -33,7 +33,7 @@ print "Aici se va regasi formularul de adaugare a unei postari de fotogafii pent
 
         include_once '/../../library/class/Post.php';
         include_once '/../../library/class/FormUtils.php';
-        print "Aici se va regasi formularul de adaugare a unei postari docs pentru avizierul cu id-ul ". $_GET['avizierId']."\n";
+        //print "Aici se va regasi formularul de adaugare a unei postari docs pentru avizierul cu id-ul ". $_GET['avizierId']."\n";
 
 //back button
             if (isset($_POST['save'])) {
@@ -46,7 +46,8 @@ print "Aici se va regasi formularul de adaugare a unei postari de fotogafii pent
                     $ext = substr($filename, strrpos($filename, '.') + 1);
                     if (($ext == "jpg" || $ext == "gif" || $ext == "png") && (($_FILES["uploaded_file"]["type"] == "image/jpeg") || ($_FILES["uploaded_file"]["type"] == "image/jpeg") || ($_FILES["uploaded_file"]["type"] == "image/jpeg")) && ($_FILES["uploaded_file"]["size"] < 3500000)){
                       //Determine the path to which we want to save this file
-                        $newname = '../../uploads/pictures'.$filename;
+                        $newname = '../../uploads/pictures/'.$filename;
+                        $path = 'uploads/pictures/'.$filename;
                         //Check if the file with the same name is already exists on the server
                         if (!file_exists($newname)) {
                           //Attempt to move the uploaded file to it's new place
@@ -60,7 +61,7 @@ print "Aici se va regasi formularul de adaugare a unei postari de fotogafii pent
                              $updated_at = date('Y-m-d H:m:s'); 
                              $query->bindParam(':name', $filename, PDO::PARAM_STR);
                              $query->bindParam(':type', $ext, PDO::PARAM_STR);
-                             $query->bindParam(':path', $newname, PDO::PARAM_STR);
+                             $query->bindParam(':path', $path, PDO::PARAM_STR);
                              $query->bindParam(':created_at', $created_at, PDO::PARAM_STR);
                              $query->bindParam(':updated_at', $updated_at, PDO::PARAM_STR);
                              $query->bindParam(':size', $_FILES["uploaded_file"]["size"], PDO::PARAM_INT);
