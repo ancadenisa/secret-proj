@@ -17,7 +17,7 @@ include_once '../library/class/Answer.php';
     <body class="background-dark">
     <a href="add-question.php" style="margin-left: 40%; margin-top: 5%" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-plus"></span> Adauga intrebare</a>
          <?php
-            $questions = Question::getAllQuestions();
+            $questions = Question::getAllVisibleQuestions();
             foreach ($questions as $question) {
                                         ?>
         <br>

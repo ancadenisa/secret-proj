@@ -64,20 +64,17 @@ class Admin{
         $query->execute();
     }
     
-    public static function addCategory($title, $description, $visibility, $user_id){
+    public static function addCategory($title, $description, $user_id){
         $handler = Connection::getInstance()->getConnection();
-        $sql = 'INSERT INTO `category` VALUES (NULL, :title, :description, :visibility, :created_at, :updated_at, :created_by, :updated_by)';
+        $sql = 'INSERT INTO `category` VALUES (NULL, :description, :title,NULL, :updated_at, :created_by, :updated_by)';
         $query = $handler->prepare($sql);
-        $created_at = date('Y-m-d H:m:s');
         $updated_at = date('Y-m-d H:m:s');
         $query->bindParam(':title', $title, PDO::PARAM_STR);
         $query->bindParam(':description', $description, PDO::PARAM_STR);
-        $query->bindParam(':visibility', $visibility, PDO::PARAM_INT);
-        $query->bindParam(':created_at', $created_at, PDO::PARAM_STR);
         $query->bindParam(':updated_at', $updated_at, PDO::PARAM_STR);
         $query->bindParam(':created_by', $user_id, PDO::PARAM_INT);
         $query->bindParam(':updated_by', $user_id, PDO::PARAM_INT);
-        $query->execute();
-        return $query;
+        $r =$query->execute();
+        return $r;
     }
 }

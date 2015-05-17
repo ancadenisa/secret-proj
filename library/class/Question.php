@@ -23,6 +23,16 @@ class Question {
         return $allQuestions;
     }
     
+    public static function getAllVisibleQuestions(){
+        $handler = Connection::getInstance()->getConnection();
+        $query = $handler->prepare('SELECT * FROM `question` WHERE `visible` = 1');
+        $query->execute();
+        $allQuestions = array();
+        while ($currQuest = $query->fetch(PDO::FETCH_ASSOC))
+            $allQuestions[] = $currQuest;
+        return $allQuestions;
+    }
+    
     public static function getQuestionById($id_, $property_){
         $handler = Connection::getInstance()->getConnection();
         $query = $handler->prepare('SELECT * FROM `question` WHERE `id` = :id_');
@@ -67,5 +77,6 @@ class Question {
         $query->bindParam(':false', $false_, PDO::PARAM_INT);
         $query->bindParam(':false', $false_, PDO::PARAM_INT);
         $query->execute();
+        
     }
 }
